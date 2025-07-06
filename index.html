@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PEkHoM Profile</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    
+
+
+  <!-- 🎥 Background Video -->
+  <video loop muted playsinline id="bgvid">
+    <source src="bg.mp4" type="video/mp4" />
+  </video>
+
+  <!-- 👇 Click Me Button -->
+  <button class="reveal-btn">Click Me</button>
+
+  <!-- 🌟 Profile Card -->
+  <div class="card hidden">
+
+    <!-- Avatar wrapper with status + comment bubble -->
+    <div class="avatar-wrapper">
+      <!-- ✅ Removed the green status dot here -->
+      <div class="speech-bubble-attached">
+        <div class="bubble-content">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      </div>
+
+      <img src="pfp.gif" class="avatar" />
+    </div>
+
+    <div class="username">
+      PEkHoM <span class="meow-tag">MEOW</span>
+    </div>
+
+    <div class="tagline">Faith and GLory</div>
+
+    <!-- 💬 Comment -->
+    <div class="comment-bubble">
+      <div class="comment-avatar-wrapper">
+        <img src="pfp.gif" class="comment-avatar" />
+        <span class="status-dot-comment"></span>
+      </div>
+      <div class="comment-content">
+        <div class="comment-name">og_pekky</div>
+        <div class="comment-text">Woohoo! babam babam!</div>
+      </div>
+    </div>
+
+    <div class="footer">og_pekky • he/him</div>
+  </div>
+
+  <script>
+    const video = document.getElementById('bgvid');
+    const card = document.querySelector('.card');
+    const button = document.querySelector('.reveal-btn');
+
+    button.addEventListener('click', () => {
+      video.muted = false;
+      video.play();
+      card.classList.remove('hidden');
+      button.style.display = 'none';
+    });
+  </script>
+
+  
+  <div class="custom-cursor"></div>
+
+
+</body>
+</html>
