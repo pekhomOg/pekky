@@ -5,21 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PEkHoM Profile</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    @keyframes floatCard {
+      0% { transform: translateY(-50%) translateX(0); }
+      50% { transform: translateY(-52%) translateX(5px); }
+      100% { transform: translateY(-50%) translateX(0); }
+    }
+
+    .floating {
+      animation: floatCard 4s ease-in-out infinite;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- 🎥 Background Video -->
   <video loop muted playsinline id="bgvid">
     <source src="bg.mp4" type="video/mp4" />
   </video>
-<div id="particles"></div>
+  <div id="particles"></div>
 
-  <!-- 👇 First Click Me Button -->
   <button class="reveal-btn" id="firstBtn">Click Mew </button>
 
-  <!-- 🌟 Profile Card -->
   <div class="card profile-card hidden">
     <div class="avatar-wrapper">
+      <img src="crown.png" class="crown" />
       <div class="speech-bubble-attached">
         <div class="bubble-content">
           <span class="typing-dot"></span>
@@ -42,51 +51,47 @@
       </div>
       <div class="comment-content">
         <div class="comment-name">
-  og_pekky
-  <img src="valo.png" alt="Valorant Badge" class="valo-badge" title="Valorant">
-  <img src="dev.png" alt="Developer Badge" class="dev-badge" title="Developer">
-  <img src="boost.png" alt="Booster Badge" class="boost-badge" title="Booster">
-  <img src="youtuber.png" alt="YouTuber Badge" class="yt-badge" title="YouTuber">
-</div>
-
+          og_pekky
+          <img src="valo.png" alt="Valorant Badge" class="valo-badge" title="Valorant">
+          <img src="dev.png" alt="Developer Badge" class="dev-badge" title="Developer">
+          <img src="boost.png" alt="Booster Badge" class="boost-badge" title="Booster">
+          <img src="youtuber.png" alt="YouTuber Badge" class="yt-badge" title="YouTuber">
+        </div>
         <div class="comment-text">Woohoo! babam babam!</div>
       </div>
     </div>
 
     <div class="footer">og_pekky • he/him</div>
     <div class="second-button-wrapper hidden" id="secondBtnWrapper">
-    <button class="reveal-btn small" id="secondBtn">Expand</button>
+      <button class="reveal-btn small" id="secondBtn">Expand</button>
+    </div>
   </div>
+
+  <div class="card bio-card hidden">
+    <h2 class="bio-title">✨ About Me</h2>
+    <p class="bio-text">
+      Hey, I’m <span class="bio-name">Pekky</span> — <span class="highlight">developer 👨‍💻</span>, <span class="highlight">gamer 🎮</span>, and <span class="highlight-red">YouTuber 📹</span>, all rolled into one chaotic creative soul.<br><br>
+      I build <span class="keyword">stuff that talks back 🤖</span>, run <span class="keyword">servers like a boss 💼</span>, and crack jokes while debugging code at <span class="keyword-night">2AM 🌙</span>.<br><br>
+      I’ve got a thing for <span class="highlight-cat">cats 🐱</span>, <span class="highlight-ui">clean UIs 🧠</span>, late-night gaming sessions ⚔️, and <span class="glow">good vibes only ✨</span>.<br><br>
+      <span class="italic">Sass? Got it.</span> <span class="italic">Chill? Always.</span> <span class="italic">Loyal? 100%.</span> <br>
+      I don’t just follow trends — <span class="highlight-pink">I start my own 🚀</span>.<br><br>
+      <span class="catchline">Mess with the code, not the coder. 😉</span>
+    </p>
   </div>
-
-  <!-- ✅ Second Button -->
-  
-
-  <!-- 🧠 Bio Card -->
- <div class="card bio-card hidden">
-  <h2 class="bio-title">✨ About Me</h2>
-  <p class="bio-text">
-    Hey, I’m <span class="bio-name">Pekky</span> — <span class="highlight">developer 👨‍💻</span>, <span class="highlight">gamer 🎮</span>, and <span class="highlight-red">YouTuber 📹</span>, all rolled into one chaotic creative soul.<br><br>
-    I build <span class="keyword">stuff that talks back 🤖</span>, run <span class="keyword">servers like a boss 💼</span>, and crack jokes while debugging code at <span class="keyword-night">2AM 🌙</span>.<br><br>
-    I’ve got a thing for <span class="highlight-cat">cats 🐱</span>, <span class="highlight-ui">clean UIs 🧠</span>, late-night gaming sessions ⚔️, and <span class="glow">good vibes only ✨</span>.<br><br>
-    <span class="italic">Sass? Got it.</span> <span class="italic">Chill? Always.</span> <span class="italic">Loyal? 100%.</span> <br>
-    I don’t just follow trends — <span class="highlight-pink">I start my own 🚀</span>.<br><br>
-    <span class="catchline">Mess with the code, not the coder. 😉</span>
-  </p>
-</div>
-
 
   <div class="third-button-wrapper hidden" id="thirdBtnWrapper">
-  <button class="reveal-btn small" id="thirdBtn">Collapse</button>
-</div>
+    <button class="reveal-btn small" id="thirdBtn">Collapse</button>
+  </div>
 
-
-  <!-- 👨‍💻 Script -->
+  <!-- Script Section -->
   <script>
     const video = document.getElementById('bgvid');
     const firstBtn = document.getElementById('firstBtn');
     const secondBtn = document.getElementById('secondBtn');
     const secondBtnWrapper = document.getElementById('secondBtnWrapper');
+    const thirdBtn = document.getElementById('thirdBtn');
+    const thirdBtnWrapper = document.getElementById('thirdBtnWrapper');
+
     const profileCard = document.querySelector('.profile-card');
     const bioCard = document.querySelector('.bio-card');
 
@@ -96,63 +101,95 @@
       profileCard.classList.remove('hidden');
       secondBtnWrapper.classList.remove('hidden');
       firstBtn.style.display = 'none';
+
+      // Reset float
+      profileCard.classList.remove('floating');
+      bioCard.classList.remove('floating');
     });
 
-    const thirdBtn = document.getElementById('thirdBtn');
-const thirdBtnWrapper = document.getElementById('thirdBtnWrapper');
+    secondBtn.addEventListener('click', () => {
+      profileCard.classList.add('slide-left');
+      bioCard.classList.remove('hidden');
+      bioCard.classList.add('slide-in');
+      secondBtnWrapper.classList.add('hidden');
+      thirdBtnWrapper.classList.remove('hidden');
 
-secondBtn.addEventListener('click', () => {
-  profileCard.classList.add('slide-left');
-  bioCard.classList.remove('hidden');
-  bioCard.classList.add('slide-in');
-  secondBtnWrapper.classList.add('hidden');
-  thirdBtnWrapper.classList.remove('hidden');
-});
+      // Start floating
+      profileCard.classList.add('floating');
+      bioCard.classList.add('floating');
+    });
 
-thirdBtn.addEventListener('click', () => {
-  profileCard.classList.remove('slide-left');
-  bioCard.classList.add('hidden');
-  bioCard.classList.remove('slide-in');
-  thirdBtnWrapper.classList.add('hidden');
-  secondBtnWrapper.classList.remove('hidden');
-});
+    thirdBtn.addEventListener('click', () => {
+      profileCard.classList.remove('slide-left');
+      bioCard.classList.add('hidden');
+      bioCard.classList.remove('slide-in');
+      thirdBtnWrapper.classList.add('hidden');
+      secondBtnWrapper.classList.remove('hidden');
 
+      // Stop floating
+      profileCard.classList.remove('floating');
+      bioCard.classList.remove('floating');
+    });
   </script>
 
   <script>
-  const particleContainer = document.getElementById('particles');
+    const particleContainer = document.getElementById('particles');
 
-  function createParticle() {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    particle.style.left = `${Math.random() * 100}vw`;
-    particle.style.animationDuration = `${2 + Math.random() * 3}s`;
-    particle.style.opacity = Math.random();
-    particle.style.background = `white`;
-    particle.style.boxShadow = `0 0 8px white, 0 0 16px white`; // glowing effect
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.animationDuration = `${2 + Math.random() * 3}s`;
+      particle.style.opacity = Math.random();
+      particle.style.background = `white`;
+      particle.style.boxShadow = `0 0 8px white, 0 0 16px white`;
+      particleContainer.appendChild(particle);
 
-
-    particleContainer.appendChild(particle);
-
-    setTimeout(() => {
-      particle.remove();
-    }, 5000);
-  }
-
-  // Create particles every 100ms
-  const particleInterval = setInterval(() => {
-    if (document.getElementById('particles')) {
-      createParticle();
+      setTimeout(() => {
+        particle.remove();
+      }, 5000);
     }
-  }, 100);
 
-  // Stop and remove particles after first button is clicked
-  firstBtn.addEventListener('click', () => {
-    clearInterval(particleInterval);
-    particleContainer.remove();
-  });
-</script>
+    const particleInterval = setInterval(() => {
+      if (document.getElementById('particles')) {
+        createParticle();
+      }
+    }, 100);
 
+    firstBtn.addEventListener('click', () => {
+      clearInterval(particleInterval);
+      particleContainer.remove();
+    });
+  </script>
 
+  <script>
+    // Tilt on hover only for profile-card
+    const cards = document.querySelectorAll('.profile-card');
+
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'transform 0.1s ease';
+        card.addEventListener('mousemove', handleTilt);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.removeEventListener('mousemove', handleTilt);
+        card.style.transform = 'translate(-50%, -50%)';
+      });
+
+      function handleTilt(e) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = -(y - centerY) / 10;
+        const rotateY = (x - centerX) / 10;
+
+        card.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
+    });
+  </script>
 </body>
 </html>
