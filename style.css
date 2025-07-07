@@ -591,17 +591,3 @@ body, html {
 
 
 
-.view-counter {
-  position: fixed;
-  top: 10px;
-  left: 15px;
-  font-size: 14px;
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 6px 12px;
-  border-radius: 12px;
-  backdrop-filter: blur(8px);
-  font-family: 'Segoe UI', sans-serif;
-  z-index: 99;
-  box-shadow: 0 0 6px #fff3;
-}
