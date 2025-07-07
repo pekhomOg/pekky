@@ -19,6 +19,9 @@
 </head>
 <body>
 
+  <div class="view-counter" id="viewCounter">👁️ Views: Loading...</div>
+
+
   <video loop muted playsinline id="bgvid">
     <source src="bg.mp4" type="video/mp4" />
   </video>
@@ -191,5 +194,24 @@
       }
     });
   </script>
+
+  <script>
+  // On page load, increment and fetch the visit count
+  fetch('https://api.countapi.xyz/hit/pekky-profile/visits')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('viewCounter').textContent = `👁️ Views: ${data.value}`;
+    });
+
+  // Every 15 seconds, fetch the updated value
+  setInterval(() => {
+    fetch('https://api.countapi.xyz/get/pekky-profile/visits')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('viewCounter').textContent = `👁️ Views: ${data.value}`;
+      });
+  }, 15000);
+</script>
+
 </body>
 </html>
