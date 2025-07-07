@@ -43,9 +43,7 @@ body, html {
   transition: 0.3s ease;
 }
 
-.avatar:hover {
-  box-shadow: 0 0 20px 5px #ec4899;
-}
+
 
 .speech-bubble-attached {
   position: absolute;
@@ -364,7 +362,7 @@ body, html {
 .third-button-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 400px; /* ← was 40px, now pushed lower */
+  margin-top: 500px; /* ← was 40px, now pushed lower */
 }
 
 
@@ -505,4 +503,89 @@ body, html {
 
 
 
+
+/* MOBILE PREVIEW */
+
+@media (max-width: 768px) {
+  .second-button-wrapper {
+  display: none;
+}
+
+  .profile-card,
+  .bio-card {
+    position: static;
+    transform: none !important;
+    width: 90%;
+    margin: 20px auto;
+    opacity: 1 !important;
+  }
+
+  .slide-left,
+  .slide-in {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .third-button-wrapper {
+    display: none; /* Hide the "Collapse" button entirely */
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
+  .bio-title {
+    font-size: 20px;
+  }
+
+  .bio-card p {
+    font-size: 13px;
+  }
+
+  .username {
+    font-size: 22px;
+  }
+
+  .comment-bubble {
+    max-width: 100%;
+  }
+}
+
+
+
+
+.profile-card, .bio-card {
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+
+@keyframes floatCard {
+  0% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-52%) translateX(5px); }
+  100% { transform: translateY(-50%) translateX(0); }
+}
+
+.floating {
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+
+
+.crown {
+  position: absolute;
+  top: -28px;           /* Moved slightly closer to avatar */
+  left: 2px;            /* Pulled more to the left */
+  width: 60px;          /* Slightly bigger crown */
+  transform: rotate(-20deg);
+  animation: floatCrown 3s ease-in-out infinite;
+  z-index: 3;
+  filter: drop-shadow(0 0 6px #fff) drop-shadow(0 0 10px #000);
+}
+
+@keyframes floatCrown {
+  0%, 100% { transform: translateY(0) rotate(-20deg); }
+  50% { transform: translateY(-5px) rotate(-20deg); }
+}
 
